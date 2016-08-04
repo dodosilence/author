@@ -39,7 +39,7 @@
         <columns>uuid</columns>
         <primary>1</primary>
       </key>
-      <column id="13" parent="3" name="id">
+      <column id="13" parent="3" name="uuid">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
       </column>
@@ -49,11 +49,14 @@
       <column id="15" parent="3" name="password">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="16" parent="3" name="username">
+      <column id="16" parent="3" name="phone">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="17" parent="3" name="PRIMARY">
-        <columns>id</columns>
+      <column id="17" parent="3" name="truename">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="18" parent="3" name="PRIMARY">
+        <columns>uuid</columns>
         <primary>1</primary>
       </key>
     </database-model>

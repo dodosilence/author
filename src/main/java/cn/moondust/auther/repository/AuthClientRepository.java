@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
  * Created by j0 on 2016/7/29.
  */
 public interface AuthClientRepository extends JpaRepository<AuthClient, String>, JpaSpecificationExecutor<AuthClient> {
+    AuthClient findOneByClientId(String client_id);
+
 }

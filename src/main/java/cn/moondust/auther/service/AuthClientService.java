@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 /**
  * Created by j0 on 2016/7/29.
  */
@@ -17,10 +15,17 @@ public class AuthClientService {
     AuthClientRepository authClientRepository;
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     public AuthClient selectClientByClientId(String client_id) {
-        List<AuthClient> authClients = authClientRepository.findAll();
-
-        return null;
+        AuthClient authClient = authClientRepository.findOneByClientId(client_id);
+        return authClient;
     }
+
+    @Transactional
+    public AuthClient insertOneClient(AuthClient authClient) {
+        return  authClientRepository.save(authClient);
+    }
+
+
+
 }

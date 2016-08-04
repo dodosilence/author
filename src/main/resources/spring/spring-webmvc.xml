@@ -13,6 +13,7 @@
 
 
     <context:component-scan base-package="cn.moondust.auther.controller"/>
+    <context:component-scan base-package="cn.moondust.auther.advice"/>
 
 
 

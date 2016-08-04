@@ -6,6 +6,9 @@
 
     <context:property-placeholder ignore-unresolvable="true" location="classpath:config/resource.properties"/>
     <context:component-scan base-package="cn.moondust.auther.service"/>
+    <context:component-scan base-package="cn.moondust.auther.repository.redis"/>
+    <context:component-scan base-package="cn.moondust.auther.modules"/>
     <import resource="spring-database.xml"/>
+    <import resource="spring-redis.xml"/>
 
 </beans>
