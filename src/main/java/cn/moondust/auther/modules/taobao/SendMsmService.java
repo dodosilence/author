@@ -19,15 +19,15 @@ public class SendMsmService {
 
 
     public boolean sendMsmCode(String phone, String code) {
-        boolean res = false;
+        boolean res;
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
         req.setExtend("123456");
         req.setSmsType("normal");
-        req.setSmsFreeSignName("阿里大于");
-        req.setSmsParamString("{\"code\":\"1234\"}");
+        req.setSmsFreeSignName("网站插画分享服务");
+        req.setSmsParamString("{\"code\":\""+code+"\"}");
         req.setRecNum(phone);
-        req.setSmsTemplateCode("SMS_585014");
+        req.setSmsTemplateCode("SMS_12961487");
         try {
             AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
             res = rsp.isSuccess();
@@ -36,6 +36,10 @@ public class SendMsmService {
         }
         return res;
     }
+
+
+
+
 
 
 }

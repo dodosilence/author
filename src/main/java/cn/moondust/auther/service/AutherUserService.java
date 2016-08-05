@@ -5,6 +5,7 @@ import cn.moondust.auther.exception.UserRegisterException;
 import cn.moondust.auther.modules.taobao.SendMsmService;
 import cn.moondust.auther.repository.UserRepository;
 import cn.moondust.auther.repository.redis.SmsCodeRedisDao;
+import cn.moondust.auther.utils.EncryptUtil;
 import cn.moondust.auther.utils.PatternUtil;
 import cn.moondust.auther.utils.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class AutherUserService {
 
 
     @Transactional
-    public int registerUser(String truename, String phone, String code, String password) throws UserRegisterException {
+    public int registerUser(String phone, String code, String password) throws UserRegisterException {
         Map msgCode = smsCodeRedisDao.getMsgCode(phone);
         User user = userRepository.findOneByPhone(phone);
         if (user != null) {
@@ -81,11 +82,10 @@ public class AutherUserService {
         }
 
         user = new User();
-        user.setTruename(truename);
         user.setNickname(phone);
-        user.setPassword(password);
         user.setPhone(phone);
         user = userRepository.save(user);
+        user.setPassword(EncryptUtil.MD5(user.getUuid()+password));
         smsCodeRedisDao.dropMsgCode(phone);
         if (user.getUuid() == null) {
             return 10;
